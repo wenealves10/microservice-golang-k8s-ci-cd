@@ -1,4 +1,4 @@
-module github.com/wenealves10/microservice-creditcard-processing-golang
+module github.com/wenealves10/microservice-golang-k8s-ci-cd
 
 go 1.18
 
