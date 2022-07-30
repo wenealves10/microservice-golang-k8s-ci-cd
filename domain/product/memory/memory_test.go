@@ -4,8 +4,8 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	"github.com/wenealves10/microservice-golang-k8s-ci-cd/aggregate"
-	"github.com/wenealves10/microservice-golang-k8s-ci-cd/domain/product"
+	"github.com/wenealves10/ddd-golang/aggregate"
+	"github.com/wenealves10/ddd-golang/domain/product"
 )
 
 func TestMemoryProductRepository_Add(t *testing.T) {

@@ -3,7 +3,7 @@ package aggregate_test
 import (
 	"testing"
 
-	"github.com/wenealves10/microservice-golang-k8s-ci-cd/aggregate"
+	"github.com/wenealves10/ddd-golang/aggregate"
 )
 
 func TestCustomer_NewCustomer(t *testing.T) {

@@ -5,12 +5,12 @@ import (
 	"log"
 
 	"github.com/google/uuid"
-	"github.com/wenealves10/microservice-golang-k8s-ci-cd/aggregate"
-	"github.com/wenealves10/microservice-golang-k8s-ci-cd/domain/customer"
-	"github.com/wenealves10/microservice-golang-k8s-ci-cd/domain/customer/memory"
-	"github.com/wenealves10/microservice-golang-k8s-ci-cd/domain/customer/mongo"
-	"github.com/wenealves10/microservice-golang-k8s-ci-cd/domain/product"
-	prodmemory "github.com/wenealves10/microservice-golang-k8s-ci-cd/domain/product/memory"
+	"github.com/wenealves10/ddd-golang/aggregate"
+	"github.com/wenealves10/ddd-golang/domain/customer"
+	"github.com/wenealves10/ddd-golang/domain/customer/memory"
+	"github.com/wenealves10/ddd-golang/domain/customer/mongo"
+	"github.com/wenealves10/ddd-golang/domain/product"
+	prodmemory "github.com/wenealves10/ddd-golang/domain/product/memory"
 )
 
 type OrderConfiguration func(os *OrderService) error

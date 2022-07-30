@@ -5,8 +5,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/wenealves10/microservice-golang-k8s-ci-cd/entity"
-	"github.com/wenealves10/microservice-golang-k8s-ci-cd/valueobject"
+	"github.com/wenealves10/ddd-golang/entity"
+	"github.com/wenealves10/ddd-golang/valueobject"
 )
 
 var (

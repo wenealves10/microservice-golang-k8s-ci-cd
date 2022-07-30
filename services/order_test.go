@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	"github.com/wenealves10/microservice-golang-k8s-ci-cd/aggregate"
+	"github.com/wenealves10/ddd-golang/aggregate"
 )
 
 func init_products(t *testing.T) []aggregate.Product {

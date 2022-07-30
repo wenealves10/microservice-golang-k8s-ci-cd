@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/wenealves10/microservice-golang-k8s-ci-cd/aggregate"
+	"github.com/wenealves10/ddd-golang/aggregate"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"

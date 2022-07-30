@@ -5,8 +5,8 @@ import (
 	"sync"
 
 	"github.com/google/uuid"
-	"github.com/wenealves10/microservice-golang-k8s-ci-cd/aggregate"
-	"github.com/wenealves10/microservice-golang-k8s-ci-cd/domain/customer"
+	"github.com/wenealves10/ddd-golang/aggregate"
+	"github.com/wenealves10/ddd-golang/domain/customer"
 )
 
 type MemoryRepository struct {

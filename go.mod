@@ -1,4 +1,4 @@
-module github.com/wenealves10/microservice-golang-k8s-ci-cd
+module github.com/wenealves10/ddd-golang
 
 go 1.18
 
