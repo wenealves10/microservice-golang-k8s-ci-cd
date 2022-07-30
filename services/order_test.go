@@ -26,7 +26,7 @@ func init_products(t *testing.T) []aggregate.Product {
 	return products
 }
 func TestOrder_NewOrderService(t *testing.T) {
-	// Create a few products to insert into in memory repo
+
 	products := init_products(t)
 
 	os, err := NewOrderService(
@@ -38,7 +38,6 @@ func TestOrder_NewOrderService(t *testing.T) {
 		t.Error(err)
 	}
 
-	// Add Customer
 	cust, err := aggregate.NewCustomer("Percy")
 	if err != nil {
 		t.Error(err)
@@ -49,7 +48,6 @@ func TestOrder_NewOrderService(t *testing.T) {
 		t.Error(err)
 	}
 
-	// Perform Order for one beer
 	order := []uuid.UUID{
 		products[0].GetID(),
 	}

@@ -1,12 +1,14 @@
 package services
 
 import (
+	"context"
 	"log"
 
 	"github.com/google/uuid"
 	"github.com/wenealves10/microservice-golang-k8s-ci-cd/aggregate"
 	"github.com/wenealves10/microservice-golang-k8s-ci-cd/domain/customer"
 	"github.com/wenealves10/microservice-golang-k8s-ci-cd/domain/customer/memory"
+	"github.com/wenealves10/microservice-golang-k8s-ci-cd/domain/customer/mongo"
 	"github.com/wenealves10/microservice-golang-k8s-ci-cd/domain/product"
 	prodmemory "github.com/wenealves10/microservice-golang-k8s-ci-cd/domain/product/memory"
 )
@@ -47,10 +49,9 @@ func WithMemoryCustomerRepository() OrderConfiguration {
 
 func WithMemoryProductRepository(products []aggregate.Product) OrderConfiguration {
 	return func(os *OrderService) error {
-		// Create the memory repo, if we needed parameters, such as connection strings they could be inputted here
+
 		pr := prodmemory.New()
 
-		// Add Items to repo
 		for _, p := range products {
 			err := pr.Add(p)
 			if err != nil {
@@ -62,14 +63,25 @@ func WithMemoryProductRepository(products []aggregate.Product) OrderConfiguratio
 	}
 }
 
+func WithMongoCustomerRepository(connectionString string) OrderConfiguration {
+	return func(os *OrderService) error {
+
+		cr, err := mongo.New(context.Background(), connectionString)
+		if err != nil {
+			return err
+		}
+		os.customers = cr
+		return nil
+	}
+}
+
 func (o *OrderService) CreateOrder(customerID uuid.UUID, productIDs []uuid.UUID) (float64, error) {
-	// Get the customer
+
 	c, err := o.customers.Get(customerID)
 	if err != nil {
 		return 0, err
 	}
 
-	// Get each Product, Ouchie, We need a ProductRepository
 	var products []aggregate.Product
 	var price float64
 	for _, id := range productIDs {
@@ -81,7 +93,6 @@ func (o *OrderService) CreateOrder(customerID uuid.UUID, productIDs []uuid.UUID)
 		price += p.GetPrice()
 	}
 
-	// All Products exists in store, now we can create the order
 	log.Printf("Customer: %s has ordered %d products", c.GetID(), len(products))
 
 	return price, nil
