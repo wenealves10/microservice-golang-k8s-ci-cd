@@ -1,16 +1,15 @@
-package services
+package order
 
 import (
 	"context"
 	"log"
 
 	"github.com/google/uuid"
-	"github.com/wenealves10/ddd-golang/aggregate"
-	"github.com/wenealves10/ddd-golang/domain/customer"
-	"github.com/wenealves10/ddd-golang/domain/customer/memory"
-	"github.com/wenealves10/ddd-golang/domain/customer/mongo"
-	"github.com/wenealves10/ddd-golang/domain/product"
-	prodmemory "github.com/wenealves10/ddd-golang/domain/product/memory"
+	"github.com/wenealves10/tavern/domain/customer"
+	"github.com/wenealves10/tavern/domain/customer/memory"
+	"github.com/wenealves10/tavern/domain/customer/mongo"
+	"github.com/wenealves10/tavern/domain/product"
+	prodmemory "github.com/wenealves10/tavern/domain/product/memory"
 )
 
 type OrderConfiguration func(os *OrderService) error
@@ -34,6 +33,20 @@ func NewOrderService(cgfs ...OrderConfiguration) (*OrderService, error) {
 	return os, nil
 }
 
+func (o *OrderService) AddCustomer(name string) (uuid.UUID, error) {
+	c, err := customer.NewCustomer(name)
+	if err != nil {
+		return uuid.Nil, err
+	}
+	// Add to Repo
+	err = o.customers.Add(c)
+	if err != nil {
+		return uuid.Nil, err
+	}
+
+	return c.GetID(), nil
+}
+
 func WithCustomerRepository(cr customer.CustomerRepository) OrderConfiguration {
 	return func(os *OrderService) error {
 		os.customers = cr
@@ -47,7 +60,7 @@ func WithMemoryCustomerRepository() OrderConfiguration {
 	return WithCustomerRepository(cr)
 }
 
-func WithMemoryProductRepository(products []aggregate.Product) OrderConfiguration {
+func WithMemoryProductRepository(products []product.Product) OrderConfiguration {
 	return func(os *OrderService) error {
 
 		pr := prodmemory.New()
@@ -82,7 +95,7 @@ func (o *OrderService) CreateOrder(customerID uuid.UUID, productIDs []uuid.UUID)
 		return 0, err
 	}
 
-	var products []aggregate.Product
+	var products []product.Product
 	var price float64
 	for _, id := range productIDs {
 		p, err := o.products.GetByID(id)

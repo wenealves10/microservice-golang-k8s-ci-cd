@@ -4,7 +4,7 @@ import (
 	"sync"
 
 	"github.com/google/uuid"
-	"github.com/wenealves10/ddd-golang/domain/product"
+	"github.com/wenealves10/tavern/domain/product"
 )
 
 type MemoryProductRepository struct {

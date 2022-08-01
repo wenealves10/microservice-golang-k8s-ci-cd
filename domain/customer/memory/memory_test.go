@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	"github.com/wenealves10/ddd-golang/domain/customer"
+	"github.com/wenealves10/tavern/domain/customer"
 )
 
 func TestMemory_GetCustomer(t *testing.T) {

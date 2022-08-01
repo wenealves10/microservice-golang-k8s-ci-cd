@@ -3,7 +3,7 @@ package product_test
 import (
 	"testing"
 
-	"github.com/wenealves10/ddd-golang/domain/product"
+	"github.com/wenealves10/tavern/domain/product"
 )
 
 func TestProduct_NewProduct(t *testing.T) {
