@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	"github.com/wenealves10/ddd-golang/aggregate"
 	"github.com/wenealves10/ddd-golang/domain/customer"
 )
 
@@ -15,7 +14,7 @@ func TestMemory_GetCustomer(t *testing.T) {
 		expectedErr error
 	}
 
-	cust, err := aggregate.NewCustomer("John Doe")
+	cust, err := customer.NewCustomer("John Doe")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -23,7 +22,7 @@ func TestMemory_GetCustomer(t *testing.T) {
 	id := cust.GetID()
 
 	repo := MemoryRepository{
-		customers: map[uuid.UUID]aggregate.Customer{
+		customers: map[uuid.UUID]customer.Customer{
 			id: cust,
 		}}
 
@@ -69,10 +68,10 @@ func TestMemory_AddCustomer(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			repo := MemoryRepository{
-				customers: map[uuid.UUID]aggregate.Customer{},
+				customers: map[uuid.UUID]customer.Customer{},
 			}
 
-			cust, err := aggregate.NewCustomer(tc.cust)
+			cust, err := customer.NewCustomer(tc.cust)
 
 			if err != nil {
 				t.Fatal(err)

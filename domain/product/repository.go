@@ -4,7 +4,6 @@ import (
 	"errors"
 
 	"github.com/google/uuid"
-	"github.com/wenealves10/ddd-golang/aggregate"
 )
 
 var (
@@ -13,9 +12,9 @@ var (
 )
 
 type ProductRepository interface {
-	GetAll() ([]aggregate.Product, error)
-	GetByID(id uuid.UUID) (aggregate.Product, error)
-	Add(aggregate.Product) error
-	Update(aggregate.Product) error
+	GetAll() ([]Product, error)
+	GetByID(id uuid.UUID) (Product, error)
+	Add(Product) error
+	Update(Product) error
 	Delete(id uuid.UUID) error
 }
