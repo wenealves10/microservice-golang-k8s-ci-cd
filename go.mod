@@ -4,7 +4,6 @@ go 1.18
 
 require (
 	github.com/google/uuid v1.3.0
-	github.com/wenealves10/tavern v0.0.0-20220730005711-229f4e754c27
 	go.mongodb.org/mongo-driver v1.10.0
 )
 
