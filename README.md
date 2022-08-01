@@ -1,4 +1,4 @@
-# Domain-Driven Design with Golang
+# Domain-Driven Design in Golang
 
 ### In this article we have covered the basics of Domain-Driven Design, in short.
 
